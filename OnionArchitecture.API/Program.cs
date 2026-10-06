@@ -1,13 +1,14 @@
 using Microsoft.EntityFrameworkCore;
 using OnionArchitecture.Data;
+using OnionArchitecture.Data.Services;
+using OnionArchitecture.Data.Services.IServices;
 
 var builder = WebApplication.CreateBuilder(args);
 
-
-
-
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
-options.UseSqlServer(builder.Configuration.GetConnectionString("")));
+options.UseSqlServer(builder.Configuration.GetConnectionString("DBContext")));
+
+builder.Services.AddScoped<IProjectService, ProjectService>();
 // Add services to the container.
 
 builder.Services.AddControllers();
